@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "rootDir": "src",
+    "baseUrl": "./src",
+    "outDir": "build/client",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "target": "es5",
+    "jsx": "react",
+    "lib": ["esnext", "dom"],
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "sourceMap": true,
+    "strictNullChecks": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "types": [
+      "node",
+      "react",
+      "react-dom",
+      "react-redux",
+      "query-string"
+    ]
+  },
+  "exclude": [
+    "build",
+    "node_modules",
+    "server"
+  ]
+}
