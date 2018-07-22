@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "rootDir": "server",
+    "baseUrl": "server",
+    "outDir": "build",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "es2017",
+    "lib": ["es2018"],
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "sourceMap": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "types": [
+      "koa",
+      "koa__cors",
+      "koa-favicon",
+      "koa-logger",
+      "koa-mount",
+      "koa-router",
+      "node",
+      "node-fetch"
+    ]
+  },
+  "exclude": [
+    "build",
+    "node_modules",
+    "src"
+  ]
+}
