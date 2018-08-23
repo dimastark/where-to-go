@@ -1,0 +1,7 @@
+{
+  "name": "where-to-go",
+  "alias": "wtg",
+  "env": {
+    "PLACES_API_KEY": "@places-api-key"
+  }
+}
