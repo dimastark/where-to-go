@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "rootDir": "src",
+    "rootDirs": ["shared", "src"],
     "baseUrl": "./src",
     "outDir": "build/client",
     "module": "esnext",
@@ -17,6 +17,9 @@
     "sourceMap": true,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
+    "paths": {
+      "shared/*": ["../shared/*"]
+    },
     "types": [
       "node",
       "react",

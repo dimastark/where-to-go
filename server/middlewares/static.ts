@@ -5,5 +5,5 @@ import serve from 'koa-static';
 
 export default () => mount(
     '/static',
-    serve(path.join(__dirname, '..', 'static')),
+    serve(path.join(__dirname, '..', '..', 'static')),
 );

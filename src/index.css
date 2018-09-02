@@ -1,6 +1,15 @@
-body
+html,
+body,
+#root
 {
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    height: 100%;
+}
+
+body
+{
+    width: 100%;
+    background: #f5f5f5;
+    font-family: Helvetica, sans-serif;
 }

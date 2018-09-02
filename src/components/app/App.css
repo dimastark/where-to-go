@@ -1,3 +1,23 @@
 .app
 {
+    width: 400px;
+    min-height: 100%;
+    margin: 0 auto;
+
+    background: #fff;
+}
+
+.app > .app__bar
+{
+    right: 0;
+    left: 0;
+
+    max-width: 408px;
+    margin: 0 auto;
+}
+
+.app__tab,
+.app__tabs
+{
+    min-height: 100vh;
 }

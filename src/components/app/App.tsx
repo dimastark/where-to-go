@@ -1,81 +1,79 @@
-import React, { PureComponent } from 'react';
-import { connect } from 'react-redux';
+import React, { PureComponent, SyntheticEvent } from 'react';
+import { RouteComponentProps } from 'react-router-dom';
 
-import Error from 'components/error';
-import Place from 'components/place';
-import Spin from 'components/spin';
-import { IMapLocation } from 'services/api/places';
-import { requestPosition } from 'store/actions/geolocation';
-import { requestPlaces } from 'store/actions/places';
-import { IRootState } from 'store/reducers';
+import { AppBar, SwipeViews, Tab, Tabs } from '../material';
+
+import tabsConfig from './tabs-config';
 
 import './App.css';
 
-function choice<T>(array: T[]): T {
-    return array[Math.floor(Math.random() * array.length)];
-}
-
-interface IDispatchFromProps {
-    requestPosition: () => void,
-    requestPlaces: (location: IMapLocation) => void,
-}
-
-type Props = IRootState & IDispatchFromProps;
-
-class App extends PureComponent<Props> {
-    componentDidMount() {
-        this.props.requestPosition();
-    }
-
-    componentDidUpdate(prevProps: Props) {
-        const { geolocation, places } = this.props;
-
-        if (!geolocation.position && !geolocation.isPending && !geolocation.error) {
-            this.props.requestPosition();
-        }
-
-        if (geolocation.position && !places.byId && !places.isPending && !places.error) {
-            const { latitude, longitude } = geolocation.position.coords;
-
-            this.props.requestPlaces({ latitude, longitude });
-        }
-    }
-
+export class App extends PureComponent<RouteComponentProps<{}>> {
     render() {
-        const { geolocation, places } = this.props;
-
-        if (!geolocation.position || geolocation.isPending) {
-            return <Spin/>;
-        }
-
-        if (geolocation.error) {
-            return <Error description="Ошибка получения геолокации."/>;
-        }
-
-        if (!places.byId || places.isPending) {
-            return <Spin/>;
-        }
-
-        if (places.error) {
-            return <Error description="Ошибка получения ближайших мест." />;
-        }
-
-        const placeId = choice(places.unusedIds);
-        const place = places.byId[placeId];
-
         return (
             <div className="app">
-                 <Place {...place} position={geolocation.position.coords} />
+                <AppBar
+                    className="app__bar"
+                    position="fixed"
+                    color="default"
+                >
+                    <Tabs
+                        value={this.value}
+                        onChange={this.handleChange}
+                        indicatorColor="primary"
+                        textColor="primary"
+                        fullWidth={true}
+                    >
+                        {tabsConfig.tabs.map((tab) => (
+                            <Tab
+                                key={tab.path}
+                                icon={tab.icon}
+                                label={tab.label}
+                                value={tab.path}
+                            />
+                        ))}
+                    </Tabs>
+                </AppBar>
+                <SwipeViews
+                    className="app__tabs"
+                    slideClassName="app__tab"
+                    index={this.index}
+                    onChangeIndex={this.handleChangeIndex}
+                    resistance={true}
+                    animateHeight={true}
+                >
+                    {tabsConfig.tabs.map((tab) => (
+                        <tab.Component key={tab.path}/>
+                    ))}
+                </SwipeViews>
             </div>
         );
     }
+
+    handleChange = (event: SyntheticEvent, path: string) => {
+        this.props.history.push(path);
+    }
+
+    handleChangeIndex = (index: number) => {
+        const path = App.paths[index];
+
+        this.props.history.push(path);
+    }
+
+    static get defaultPath() {
+        return tabsConfig.defaultTab;
+    }
+
+    static get paths() {
+        return tabsConfig.tabs.map((tab) => tab.path);
+    }
+
+    get value() {
+        const { pathname } = this.props.location;
+
+        return App.paths.includes(pathname) ? pathname : App.defaultPath;
+    }
+
+    get index() {
+        return App.paths.indexOf(this.value);
+    }
 }
-
-const mapStateToProps = (state: IRootState) => state;
-
-const mapDispatchToProps = {
-    requestPlaces,
-    requestPosition,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);

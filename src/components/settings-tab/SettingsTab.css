@@ -1,0 +1,11 @@
+.settings-tab
+{
+    display: flex;
+    flex-direction: column;
+    padding: 80px 20px 30px 20px;
+}
+
+.settings-tab > .settings-tab__field
+{
+    margin-bottom: 25px;
+}

@@ -1,1 +1,1 @@
-export { default } from './Place';
+export { Place as default } from './Place';

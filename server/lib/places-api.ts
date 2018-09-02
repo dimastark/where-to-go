@@ -1,69 +1,39 @@
-import qs from 'querystring';
+import got from 'got';
 
-import fetch from 'node-fetch';
+import config from 'config';
+import { IPlace } from 'shared/places-api';
+import { InternalServerError } from './errors';
+import { camelCaseRecursive } from './utils';
 
-const API_KEY = process.env.PLACES_API_KEY || 'AIzaSyCgruEeA8V3XPN6Rsoh8MWu7uPqSPAaVss';
-const API_URL = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json';
-
-export type PlaceType = 'cafe' | 'restaurant';
-
-export interface IMapLocation {
-    latitude: number,
-    longitude: number,
+interface IOptions {
+    lat: number;
+    lng: number;
+    radius?: number;
+    category?: string;
 }
 
-export interface IPlaceLocation {
-    lat: number,
-    lng: number,
-}
+export async function getAllPlaces(options: IOptions): Promise<IPlace[]> {
+    const { lat, lng, radius, category } = options;
 
-export interface IPhoto {
-    height: number,
-    width: number,
-    htmlAttributions: string[],
-    photoReference: string,
-}
-
-export interface IPlace {
-    id: string,
-    placeId: string,
-    reference: string,
-    name: string,
-    vicinity?: string
-    icon: string,
-    geometry: {
-        location: IPlaceLocation,
-        viewport?: {
-            northeast: IPlaceLocation,
-            southwest: IPlaceLocation,
+    const { body } = await got(config.placesApiUrl, {
+        headers: {
+            'Accept-Encoding': 'gzip',
+            'Accept-Language': 'ru,en;q=0.9',
         },
-    },
-    openingHours: {
-        openNow: boolean,
-        weekdayText: string[],
-    },
-    photos: IPhoto[],
-    priceLevel?: 0 | 1 | 2 | 3 | 4,
-    rating: number,
-    types: string[],
-}
+        json: true,
+        query: {
+            app_code: config.placesAppCode,
+            app_id: config.placesAppId,
+            cat: category || 'eat-drink',
+            in: `${lat},${lng};r=${radius || 500}`,
+            size: config.placesPageSize,
+            tf: 'plain',
+        },
+    });
 
-export async function getAllPlaces({ latitude, longitude }: IMapLocation, type: PlaceType = 'restaurant'): Promise<IPlace[]> {
-    const query = {
-        key: API_KEY,
-        location: `${latitude},${longitude}`,
-        radius: 500,
-        language: 'ru',
-        opennow: true,
-        type,
-    };
-
-    const json = await fetch(`${API_URL}?${qs.stringify(query)}`)
-        .then(response => response.json());
-
-    if (!['OK', 'ZERO_RESULTS'].includes(json.status) || !Array.isArray(json.results)) {
-        throw new Error('Places fetch error.');
+    if (!Array.isArray(body.results.items)) {
+        throw new InternalServerError('Places fetch error.');
     }
 
-    return json.results;
+    return camelCaseRecursive(body.results.items);
 }
