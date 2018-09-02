@@ -1,17 +1,23 @@
 {
   "extends": [
     "tslint:recommended",
-    "tslint-react",
-    "tslint-config-prettier"
+    "tslint-react"
   ],
   "rules": {
     "interface-over-type-literal": false,
+    "jsx-no-multiline-js": false,
+    "max-classes-per-file": false,
     "member-access": false,
-    "no-console": false
+    "object-curly-spacing": true,
+    "quotemark": false
   },
   "linterOptions": {
     "exclude": [
-      "node_modules/**/*.ts"
+      "node_modules/**/*.ts",
+      "node_modules/**/*.tsx"
     ]
-  }
+  },
+  "rulesDirectory": [
+    "node_modules/tslint-eslint-rules/dist/rules"
+  ]
 }

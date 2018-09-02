@@ -1,5 +1,40 @@
-.place-map
+.place
 {
-    display: block;
-    max-width: 100%;
+    padding-bottom: 16px;
+}
+
+.place__tags
+{
+    display: flex;
+    flex-wrap: wrap;
+
+    box-sizing: border-box;
+    width: 100%;
+    padding-right: 16px;
+    padding-left: 16px;
+}
+
+.place__tags > .place__tag
+{
+    font-size: .7rem;
+
+    height: 24px;
+    margin-right: 4px;
+    margin-bottom: 6px;
+}
+
+.place__tags > .open
+{
+    color: #90ee90;
+}
+
+.place__tags > .close
+{
+    color: #f08080;
+}
+
+.place__map
+{
+    height: 250px;
+    margin-top: 4px;
 }

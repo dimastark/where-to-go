@@ -2,6 +2,8 @@
   "name": "where-to-go",
   "alias": "wtg",
   "env": {
-    "PLACES_API_KEY": "@places-api-key"
+    "API_APP_CODE": "@places-app-code",
+    "API_APP_ID": "@places-app-id",
+    "PORT": "@wtg-port"
   }
 }

@@ -1,13 +1,14 @@
 import qs from 'query-string';
 
 const API_URL = process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:8000/api';
+const API_ERRORS_CODES = [400, 500];
 
 interface IQuery {
-    [key: string]: any,
+    [key: string]: any;
 }
 
 interface IRequestInit extends RequestInit {
-    query?: IQuery,
+    query?: IQuery;
 }
 
 function getRequestUrl(url: string, query: IQuery = {}) {
@@ -19,6 +20,12 @@ function getRequestUrl(url: string, query: IQuery = {}) {
 }
 
 export default async function <TResult> (url: string, options: IRequestInit = {}): Promise<TResult> {
-    return fetch(getRequestUrl(url, options.query), options)
-        .then(response => response.json());
+    const response = await fetch(getRequestUrl(url, options.query), options);
+    const json = await response.json();
+
+    if (API_ERRORS_CODES.includes(response.status)) {
+        throw new Error(json.statusText);
+    }
+
+    return json;
 }

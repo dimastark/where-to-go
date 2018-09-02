@@ -1,8 +1,11 @@
 {
   "compilerOptions": {
-    "rootDir": "server",
-    "baseUrl": "server",
-    "outDir": "build",
+    "rootDirs": [".", "../shared"],
+    "paths": {
+      "shared/*": ["../shared/*"]
+    },
+    "baseUrl": ".",
+    "outDir": "../build",
     "module": "commonjs",
     "moduleResolution": "node",
     "target": "es2017",
@@ -19,19 +22,15 @@
     "strictPropertyInitialization": true,
     "suppressImplicitAnyIndexErrors": true,
     "types": [
+      "got",
       "koa",
       "koa__cors",
       "koa-favicon",
       "koa-logger",
       "koa-mount",
       "koa-router",
-      "node",
-      "node-fetch"
+      "lodash",
+      "node"
     ]
-  },
-  "exclude": [
-    "build",
-    "node_modules",
-    "src"
-  ]
+  }
 }

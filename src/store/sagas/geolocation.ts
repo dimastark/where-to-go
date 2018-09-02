@@ -1,11 +1,7 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 
 import API from 'services/api';
-import {
-    GeolocationActionType,
-    requestPositionError,
-    requestPositionSuccess,
-} from 'store/actions/geolocation';
+import { GeolocationActionType, requestPositionError, requestPositionSuccess } from 'store/actions/geolocation';
 
 function * requestPositionAsync() {
     try {
@@ -17,8 +13,8 @@ function * requestPositionAsync() {
     }
 }
 
-export default function * () {
+export default function *() {
     yield all([
-        takeLatest(GeolocationActionType.REQUEST_POSITION, requestPositionAsync)
+        takeLatest(GeolocationActionType.REQUEST_POSITION, requestPositionAsync),
     ]);
 }
