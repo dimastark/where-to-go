@@ -11,5 +11,10 @@
 .choice-tab__buttons
 {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+}
+
+.choice-tab__buttons > .choice-tab__choice-all
+{
+    margin-right: 10px;
 }

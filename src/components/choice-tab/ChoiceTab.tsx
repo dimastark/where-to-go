@@ -70,6 +70,7 @@ export class ChoiceTab extends PureComponent<IProps> {
             <div className="choice-tab">
                 <div className="choice-tab__buttons">
                     <Button
+                        className="choice-tab__choice-all"
                         color="primary"
                         size="small"
                         variant="outlined"
