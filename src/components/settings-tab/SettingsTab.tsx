@@ -19,6 +19,8 @@ export interface IProps extends IStateFromProps, IDispatchFromProps {
 }
 
 export class SettingsTab extends PureComponent<IProps> {
+    state = { dirtyRadius: this.props.settings.radius.toString() };
+
     render() {
         const { settings } = this.props;
 
@@ -39,7 +41,7 @@ export class SettingsTab extends PureComponent<IProps> {
                 <TextField
                     className="settings-tab__field"
                     label="Радиус поиска"
-                    value={settings.radius}
+                    value={this.state.dirtyRadius}
                     onChange={this.handleChangeRadius}
                     type="number"
                 />
@@ -60,7 +62,14 @@ export class SettingsTab extends PureComponent<IProps> {
     }
 
     handleChangeRadius = (event: any) => {
-        this.props.setRadius(event.target.value);
+        const { value } = event.target;
+        const radius = parseInt(value, 10);
+
+        if (!Number.isNaN(radius)) {
+            this.props.setRadius(radius);
+        }
+
+        this.setState({ dirtyRadius: value });
     }
 
     handleRefresh = () => {
