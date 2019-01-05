@@ -1,4 +1,4 @@
-import React, { PureComponent, SyntheticEvent } from 'react';
+import React, { PureComponent } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 
 import { AppBar, SwipeViews, Tab, Tabs } from '../material';
@@ -23,7 +23,7 @@ export class App extends PureComponent<RouteComponentProps<{}>> {
                         textColor="primary"
                         fullWidth={true}
                     >
-                        {tabsConfig.tabs.map((tab) => (
+                        {tabsConfig.tabs.map(tab => (
                             <Tab
                                 key={tab.path}
                                 icon={tab.icon}
@@ -41,7 +41,7 @@ export class App extends PureComponent<RouteComponentProps<{}>> {
                     resistance={true}
                     animateHeight={true}
                 >
-                    {tabsConfig.tabs.map((tab) => (
+                    {tabsConfig.tabs.map(tab => (
                         <tab.Component key={tab.path}/>
                     ))}
                 </SwipeViews>
@@ -49,7 +49,7 @@ export class App extends PureComponent<RouteComponentProps<{}>> {
         );
     }
 
-    handleChange = (event: SyntheticEvent, path: string) => {
+    handleChange = (event: any, path: string) => {
         this.props.history.push(path);
     }
 
@@ -64,7 +64,7 @@ export class App extends PureComponent<RouteComponentProps<{}>> {
     }
 
     static get paths() {
-        return tabsConfig.tabs.map((tab) => tab.path);
+        return tabsConfig.tabs.map(tab => tab.path);
     }
 
     get value() {

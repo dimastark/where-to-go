@@ -1,4 +1,4 @@
-import { IPlace } from 'shared/places-api';
+import { IPlace } from '../../../shared/places-api';
 
 const LS_KEY = 'FAVOURITES_PLACES';
 
@@ -20,7 +20,7 @@ export default {
     },
 
     delete(prevItems: IPlace[] | null, id: string) {
-        const items = (prevItems || []).filter((place) => place.id !== id);
+        const items = (prevItems || []).filter(place => place.id !== id);
 
         return this.set(items);
     },

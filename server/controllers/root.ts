@@ -7,9 +7,9 @@ import { NotFoundError } from 'lib/errors';
 
 const router = new Router();
 
-router.get('/', async (ctx) => {
-    const htmlPath = path.join(__dirname, '..', '..', 'index.html');
+const htmlPath = path.join(__dirname, '..', '..', 'index.html');
 
+router.get('/', async ctx => {
     if (!fs.existsSync(htmlPath)) {
         throw new NotFoundError();
     }

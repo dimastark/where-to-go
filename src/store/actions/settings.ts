@@ -1,5 +1,5 @@
-import { createAction } from 'services/action';
-import { PlaceCategory } from 'shared/places-api';
+import { PlaceCategory } from '../../../shared/places-api';
+import { createAction } from '../../services/action';
 
 export enum SettingsActionType {
     SET_CATEGORY = 'SET_CATEGORY',

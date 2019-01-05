@@ -6,14 +6,14 @@ import { isFloatString } from 'lib/utils';
 
 const router = new Router();
 
-router.get('/', async (ctx) => {
-    const { category, latitude, longitude, radius } = ctx.query;
-
-    if (!isFloatString(latitude) || !isFloatString(longitude)) {
-        throw new ValidationError('Invalid "latitude" or "longitude".');
-    } else if (radius && !isFloatString(radius)) {
-        throw new ValidationError('Invalid "radius"');
+router.get('/', async ctx => {
+    for (const param of ['latitude', 'longitude', 'radius']) {
+        if (!isFloatString(ctx.query[param])) {
+            throw new ValidationError(`Invalid "${param}"`);
+        }
     }
+
+    const { category, latitude, longitude, radius } = ctx.query;
 
     ctx.response.body = await getAllPlaces({
         category,

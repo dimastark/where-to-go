@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 
-import { Spin } from 'components/material';
+import { Spin } from '../material';
 
 import './SpinTab.css';
 

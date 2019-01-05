@@ -16,6 +16,4 @@ const store = createStore(
 
 sagaMiddleware.run(saga);
 
-export { IRootState } from './reducers';
-
 export default store;

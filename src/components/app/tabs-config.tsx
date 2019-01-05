@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { FavouriteIcon, SettingsIcon } from 'components/material';
+import { FavouriteIcon, SettingsIcon } from '../material';
 
-import ChoiceTab from 'components/choice-tab';
-import FavouritesTab from 'components/favourites-tab';
-import SettingsTab from 'components/settings-tab';
+import ChoiceTab from '../choice-tab';
+import FavouritesTab from '../favourites-tab';
+import SettingsTab from '../settings-tab';
 
 export default {
     defaultTab: '/choice',

@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { HashRouter } from 'react-router-dom';
 
-import App from 'components/app';
-import store from 'store';
+import App from './components/app';
+import store from './store';
 
 import './index.css';
 

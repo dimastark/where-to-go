@@ -1,4 +1,4 @@
-import { GeolocationAction, GeolocationActionType } from 'store/actions/geolocation';
+import { GeolocationAction, GeolocationActionType } from '../actions/geolocation';
 
 export interface IGeolocationState {
     error: Error | null;

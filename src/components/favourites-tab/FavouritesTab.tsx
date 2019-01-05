@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
 
-import { IFavouritesState } from 'store/reducers/favourites';
+import { IFavouritesState } from '../../store/reducers/favourites';
 
-import Place from 'components/place';
-import SpinTab from 'components/spin-tab';
+import Place from '../place';
+import SpinTab from '../spin-tab';
 
 import './FavouritesTab.css';
 
@@ -37,7 +37,7 @@ export class FavouritesTab extends PureComponent<IProps> {
 
         return (
             <div className="favourites-tab">
-                {favourites.items.map((place) => (
+                {favourites.items.map(place => (
                     <Place
                         key={place.id}
                         {...place}

@@ -1,5 +1,5 @@
-import { createAction } from 'services/action';
-import { IPlace } from 'shared/places-api';
+import { IPlace } from '../../../shared/places-api';
+import { createAction } from '../../services/action';
 
 export enum FavouritesActionType {
     ADD_FAVOURITE = 'ADD_FAVOURITE',

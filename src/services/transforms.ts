@@ -1,5 +1,5 @@
 export function allIds<TId extends string | number>(data: Array<{ id: TId }>): TId[] {
-    return data.map((item) => item.id);
+    return data.map(item => item.id);
 }
 
 export function byId<TItem extends { id: string | number }>(data: TItem[]): { [id: string]: TItem } {

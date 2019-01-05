@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
 
-import { Avatar, Card, CardHeader, CardMedia, CloseIcon, FavouriteIcon, IconButton } from 'components/material';
-import { IPlace, ITag } from 'shared/places-api';
+import { IPlace, ITag } from '../../../shared/places-api';
+import { Avatar, Card, CardHeader, CardMedia, CloseIcon, FavouriteIcon, IconButton } from '../material';
 
-import staticMapUrl from 'services/static-map-url';
+import staticMapUrl from '../../services/static-map-url';
 import Tag from './Tag';
 
 import './Place.css';
@@ -49,7 +49,7 @@ export class Place extends PureComponent<IClosableProps | ILikeableProps> {
                 />
 
                 <div className="place__tags">
-                    {this.tags.map((tag) => (
+                    {this.tags.map(tag => (
                         <Tag key={tag.id} {...tag}/>
                     ))}
                 </div>
@@ -66,7 +66,7 @@ export class Place extends PureComponent<IClosableProps | ILikeableProps> {
 
     handleLike = () => {
         if (!this.props.closable) {
-            const { isFavourite, addFavourite, deleteFavourite, ...rest } = this.props;
+            const { isFavourite, addFavourite, deleteFavourite, ...rest } = this.props as ILikeableProps;
             const { closable, withMap, geolocation, ...place } = rest;
 
             if (isFavourite) {

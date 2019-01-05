@@ -1,4 +1,4 @@
-import { IPlacesQuery, PlaceCategory } from 'shared/places-api';
+import { IPlacesQuery, PlaceCategory } from '../../../shared/places-api';
 
 const LS_KEY = 'SETTINGS';
 

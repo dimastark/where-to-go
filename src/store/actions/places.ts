@@ -1,5 +1,5 @@
-import { createAction } from 'services/action';
-import { IPlace, IPlacesQuery } from 'shared/places-api';
+import { IPlace, IPlacesQuery } from '../../../shared/places-api';
+import { createAction } from '../../services/action';
 
 export enum PlacesActionType {
     CHOICE_PLACE = 'CHOICE_PLACE',

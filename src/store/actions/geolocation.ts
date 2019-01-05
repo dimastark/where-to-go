@@ -1,4 +1,4 @@
-import { createAction } from 'services/action';
+import { createAction } from '../../services/action';
 
 export enum GeolocationActionType {
     REQUEST_POSITION = 'REQUEST_POSITION',

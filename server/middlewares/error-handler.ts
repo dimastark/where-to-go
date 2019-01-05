@@ -14,7 +14,7 @@ export default () => async (ctx: Context, next: () => Promise<any>) => {
             /* tslint:disable-next-line:no-console */
             console.error(error);
 
-            ctx.throw(500, 'Internal Server ErrorTab.');
+            ctx.throw(500, 'Internal Server Error.');
         }
     }
 };

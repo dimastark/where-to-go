@@ -1,14 +1,14 @@
 import React, { PureComponent } from 'react';
 
-import { Button } from 'components/material';
-import { IPlace, IPlacesQuery } from 'shared/places-api';
-import { IFavouritesState } from 'store/reducers/favourites';
-import { IGeolocationState } from 'store/reducers/geolocation';
-import { IPlacesState } from 'store/reducers/places';
+import { IPlace, IPlacesQuery } from '../../../shared/places-api';
+import { IFavouritesState } from '../../store/reducers/favourites';
+import { IGeolocationState } from '../../store/reducers/geolocation';
+import { IPlacesState } from '../../store/reducers/places';
+import { Button } from '../material';
 
-import ErrorTab from 'components/error-tab';
-import Place from 'components/place';
-import SpinTab from 'components/spin-tab';
+import ErrorTab from '../error-tab';
+import Place from '../place';
+import SpinTab from '../spin-tab';
 
 import './ChoiceTab.css';
 
@@ -119,7 +119,7 @@ export class ChoiceTab extends PureComponent<IProps> {
         const { favourites } = this.props;
 
         return (favourites.items || [])
-            .map((place) => place.id);
+            .map(place => place.id);
     }
 
     get hasFavourites() {

@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import { camelCase, isArray, isPlainObject } from 'lodash';
 
 const ALMOST_FLOAT_REGEXP = /^-?[0-9]*(.[0-9]+)?$/;
 
@@ -7,16 +7,16 @@ export function isFloatString(value: string): boolean {
 }
 
 export function camelCaseRecursive(object: any): any {
-    if (_.isArray(object)) {
-        return object.map((item) => camelCaseRecursive(item));
+    if (isArray(object)) {
+        return object.map(item => camelCaseRecursive(item));
     }
 
-    if (_.isPlainObject(object)) {
+    if (isPlainObject(object)) {
         const camelCaseObject = {};
 
-        _.forEach(object, (value, key) => {
-            camelCaseObject[_.camelCase(key)] = camelCaseRecursive(value);
-        });
+        for (const key of Object.keys(object)) {
+            camelCaseObject[camelCase(key)] = camelCaseRecursive(object[key]);
+        }
 
         return camelCaseObject;
     }

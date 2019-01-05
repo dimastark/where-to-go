@@ -1,6 +1,6 @@
-import API from 'services/api';
-import { IPlace } from 'shared/places-api';
-import { FavouritesAction, FavouritesActionType } from 'store/actions/favourites';
+import { IPlace } from '../../../shared/places-api';
+import API from '../../services/api';
+import { FavouritesAction, FavouritesActionType } from '../actions/favourites';
 
 export interface IFavouritesState {
     items: IPlace[] | null;

@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 
-import { Chip } from 'components/material';
+import { Chip } from '../material';
 
 interface IProps {
     id: string;

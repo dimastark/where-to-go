@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 
-import { addFavourite, deleteFavourite } from 'store/actions/favourites';
-import { requestPosition } from 'store/actions/geolocation';
-import { choicePlace, requestPlaces } from 'store/actions/places';
-import { IRootState } from 'store/reducers';
+import { addFavourite, deleteFavourite } from '../../store/actions/favourites';
+import { requestPosition } from '../../store/actions/geolocation';
+import { choicePlace, requestPlaces } from '../../store/actions/places';
+import { IRootState } from '../../store/reducers';
 import { ChoiceTab, IDispatchFromProps, IStateFromProps } from './ChoiceTab';
 
 const mapStateToProps = (state: IRootState) => ({
@@ -20,4 +20,7 @@ const mapDispatchToProps = {
     requestPosition,
 };
 
-export default connect<IStateFromProps, IDispatchFromProps>(mapStateToProps, mapDispatchToProps)(ChoiceTab);
+export default connect<IStateFromProps, IDispatchFromProps, {}, IRootState>(
+    mapStateToProps,
+    mapDispatchToProps,
+)(ChoiceTab);

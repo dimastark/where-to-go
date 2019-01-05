@@ -1,6 +1,6 @@
-import { allIds, byId, choice } from 'services/transforms';
-import { IPlace } from 'shared/places-api';
-import { PlacesAction, PlacesActionType } from 'store/actions/places';
+import { IPlace } from '../../../shared/places-api';
+import { allIds, byId, choice } from '../../services/transforms';
+import { PlacesAction, PlacesActionType } from '../actions/places';
 
 export interface IPlacesState {
     byId: {
@@ -25,7 +25,8 @@ const defaultState: IPlacesState = {
 export default function(state: IPlacesState = defaultState, action: PlacesAction): IPlacesState {
     switch (action.type) {
         case PlacesActionType.CHOICE_PLACE:
-            const places = Object.values(state.byId || {});
+            const byIdState = state.byId || {};
+            const places = Object.keys(byIdState).map(key => byIdState[key]);
 
             return {
                 ...state,

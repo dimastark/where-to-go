@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
-import { setCategory, setRadius } from 'store/actions/settings';
-import { IRootState } from 'store/reducers';
+import { setCategory, setRadius } from '../../store/actions/settings';
+import { IRootState } from '../../store/reducers';
 import { IDispatchFromProps, IStateFromProps, SettingsTab } from './SettingsTab';
 
 const mapStateToProps = (state: IRootState) => ({
@@ -13,4 +13,7 @@ const mapDispatchToProps = {
     setRadius,
 };
 
-export default connect<IStateFromProps, IDispatchFromProps>(mapStateToProps, mapDispatchToProps)(SettingsTab);
+export default connect<IStateFromProps, IDispatchFromProps, {}, IRootState>(
+    mapStateToProps,
+    mapDispatchToProps,
+)(SettingsTab);

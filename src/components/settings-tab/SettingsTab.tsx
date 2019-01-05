@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 
-import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from 'components/material';
-import { PlaceCategory } from 'shared/places-api';
-import { ISettingsState } from 'store/reducers/settings';
+import { PlaceCategory } from '../../../shared/places-api';
+import { ISettingsState } from '../../store/reducers/settings';
+import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from '../material';
 
 import './SettingsTab.css';
 

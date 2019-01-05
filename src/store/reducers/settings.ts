@@ -1,6 +1,6 @@
-import API from 'services/api';
-import { PlaceCategory } from 'shared/places-api';
-import { SettingsAction, SettingsActionType } from 'store/actions/settings';
+import { PlaceCategory } from '../../../shared/places-api';
+import API from '../../services/api';
+import { SettingsAction, SettingsActionType } from '../actions/settings';
 
 export interface ISettingsState {
     category: PlaceCategory;
